@@ -1,6 +1,8 @@
 package hibernate.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 
@@ -24,6 +26,10 @@ public class Employee {
 
     @Column(name = "PESEL", nullable = false, unique = true)
     private int pesel;
+
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name="add_id", referencedColumnName = "id")
+    Address address;
 
     public Employee() {}
 
@@ -67,12 +73,20 @@ public class Employee {
         this.pesel = pesel;
     }
 
-    public static Employee copyEmployee(Employee emp) {
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public static Employee copyEmployee(Employee emp, int i) {
         Employee person = new Employee();
-        //person.setAddress(emp.getAddress());
-        person.setLastName(emp.getLastName());
+        person.setAddress(emp.getAddress());
+        person.setLastName(emp.getLastName() + i);
         person.setFirstName(emp.getFirstName());
-        person.setPesel(new Random().nextInt());
+        person.setPesel(i);
         person.setSalary(emp.getSalary());
         return person;
     }
