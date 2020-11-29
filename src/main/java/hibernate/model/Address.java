@@ -1,6 +1,10 @@
 package hibernate.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "ADDRESSES")
@@ -26,6 +30,13 @@ public class Address {
 
     @Column(length = 5, nullable = false)
     String postcode;
+
+    @OneToMany(mappedBy = "address", cascade = CascadeType.ALL, fetch =FetchType.EAGER)
+    Set<Employee> employee = new HashSet<>();
+
+    public Set<Employee> getEmployee() {
+        return employee;
+    }
 
     public int getId() {
         return id;

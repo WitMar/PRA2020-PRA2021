@@ -27,9 +27,12 @@ public class Employee {
     @Column(name = "PESEL", nullable = false, unique = true)
     private int pesel;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name="add_id", referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="address_id", nullable=false)
     Address address;
+
+    @ElementCollection
+    private List<String> phones = new ArrayList<>();
 
     public Employee() {}
 

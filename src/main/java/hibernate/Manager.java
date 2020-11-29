@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import javax.persistence.*;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 
 class Manager {
@@ -75,9 +76,17 @@ class Manager {
             Queries query = new Queries(session);
             List<Employee> resultByPage = query.getAllEmployeeByPage(1);
             resultByPage = query.getAllEmployeeByPage(2);
+
+            Set<Employee> listInAddress = session.get(Address.class, 1).getEmployee();
+
             session.getTransaction().commit();
 
+            session.clear();
+
             session.getTransaction().begin();
+
+            listInAddress = session.get(Address.class, 1).getEmployee();
+
             //Illegal
 //            int id = employee.getId();
 //            session.remove(employee);
