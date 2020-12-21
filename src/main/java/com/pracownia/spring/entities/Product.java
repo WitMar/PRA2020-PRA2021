@@ -2,6 +2,7 @@ package com.pracownia.spring.entities;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.joda.time.DateTime;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -14,8 +15,8 @@ import java.util.Set;
  * Product entity.
  */
 @Entity
-//@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class,
-//        property="refId", scope=Product.class)
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class,
+        property="refId", scope=Product.class)
 public class Product {
 
     @Id
@@ -31,8 +32,8 @@ public class Product {
     @Column
     private BigDecimal price;
 
-    @Column
-    private ZonedDateTime bestBeforeDate;
+    @Column(length = 1000)
+    private DateTime bestBeforeDate;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private Set<Seller> sellers = new HashSet<>();
@@ -42,7 +43,7 @@ public class Product {
 
     }
 
-    public Product(String productId, String name, BigDecimal price, ZonedDateTime date) {
+    public Product(String productId, String name, BigDecimal price, DateTime date) {
         this.productId = productId;
         this.name = name;
         this.price = price;
@@ -81,11 +82,11 @@ public class Product {
         this.price = price;
     }
 
-    public ZonedDateTime getBestBeforeDate() {
+    public DateTime getBestBeforeDate() {
         return bestBeforeDate;
     }
 
-    public void setBestBeforeDate(ZonedDateTime bestBeforeDate) {
+    public void setBestBeforeDate(DateTime bestBeforeDate) {
         this.bestBeforeDate = bestBeforeDate;
     }
 

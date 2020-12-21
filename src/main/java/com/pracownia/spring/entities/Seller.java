@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-//@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class,
-//        property="refSelId", scope=Seller.class)
+@JsonIdentityInfo(generator= ObjectIdGenerators.IntSequenceGenerator.class,
+        property="refSelId", scope=Seller.class)
 public class Seller {
 
     @Id
@@ -28,17 +28,6 @@ public class Seller {
     @CollectionTable(name = "products")
     @Column(name = "product_id")
     private List<String> products = new ArrayList<>();
-
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy="sellers")
-    private List<Product> productsOb;
-
-    public List<Product> getProductsOb() {
-        return productsOb;
-    }
-
-    public void setProductsOb(List<Product> productsOb) {
-        this.productsOb = productsOb;
-    }
 
     //required by Hibernate
     public Seller(){

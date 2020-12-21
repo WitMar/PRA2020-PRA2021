@@ -4,6 +4,8 @@ import com.pracownia.spring.entities.Product;
 import com.pracownia.spring.entities.Seller;
 import com.pracownia.spring.services.ProductService;
 import com.pracownia.spring.services.*;
+import org.codehaus.plexus.util.dag.DAG;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -13,10 +15,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Homepage controller.
@@ -37,9 +36,7 @@ public class IndexController {
     @PostMapping(value = "generateModel", produces = MediaType.TEXT_PLAIN_VALUE)
     public String generateModel() {
 
-        LocalDateTime localtDateAndTime = LocalDateTime.now();
-        ZoneId zoneId = ZoneId.systemDefault();
-        ZonedDateTime dateAndTime  = ZonedDateTime.of(localtDateAndTime, zoneId);
+        DateTime dateAndTime  = DateTime.now();
 
         Product p0 = new Product(UUID.randomUUID().toString(),"Chleb", new BigDecimal(3.50), dateAndTime.plusDays(7));
         Product p1 = new Product(UUID.randomUUID().toString(),"Jajko", new BigDecimal(2.50), dateAndTime.plusDays(7));

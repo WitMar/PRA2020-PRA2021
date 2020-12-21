@@ -71,7 +71,7 @@ public class ProductController {
                                                       Product product) {
         product.setProductId(UUID.randomUUID().toString());
         productService.saveProduct(product);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return ResponseEntity.ok().body(product);
     }
 
 
@@ -97,6 +97,11 @@ public class ProductController {
     public RedirectView delete(@PathVariable Integer id) {
         productService.deleteProduct(id);
         return new RedirectView("/api/products", true);
+    }
+
+    @GetMapping(value = "/products/{page}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Iterable<Product> list(@PathVariable("page") Integer pageNr,@RequestParam("size") Optional<Integer> howManyOnPage) {
+        return productService.listAllProductsPaging(pageNr, howManyOnPage.orElse(2));
     }
 
 }

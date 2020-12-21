@@ -15,4 +15,5 @@ public interface ProductService {
 
     Boolean checkIfExist(Integer id);
 
+    Iterable<Product> listAllProductsPaging(Integer pageNr, Integer howManyOnPage);
 }
