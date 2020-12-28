@@ -19,18 +19,18 @@ class TodoList extends React.Component {
         axios.get(`http://localhost:8080/todos`)
             .then(res => {
                 const todosList = res.data;
-                this.setState({ todosList });
+                this.setState({todosList});
             })
     }
 
     updateChild = (id, done) => {
         let arrAfterUpdate = this.state.todosList.map(function (item) {
-            if(item.id === id) item.done = done;
+            if (item.id === id) item.done = done;
             return item;
         });
 
         let object = arrAfterUpdate.find(function (item) {
-            if(item.id === id) return item;
+            if (item.id === id) return item;
         });
 
         this.setState({todosList: arrAfterUpdate});
@@ -52,7 +52,7 @@ class TodoList extends React.Component {
 
     handleRemove = id => {
         let object = this.state.todosList.find(function (item) {
-            if(item.id === id) return item;
+            if (item.id === id) return item;
         });
         let arrAfterDel = this.state.todosList.filter(function (item) {
             return item.id !== id
@@ -74,11 +74,11 @@ class TodoList extends React.Component {
             return (<tr key={todo.id}>
                 <Todo value={todo.value}
                       done={todo.done}
-                      id = {todo.id}
-                      update={(id, done) => this.updateChild(id, done)}  />
+                      id={todo.id}
+                      update={(id, done) => this.updateChild(id, done)}/>
                 <th>
                     <button type="button" onClick={() => this.handleRemove(todo.id)}>
-                    Remove
+                        Remove
                     </button>
                 </th>
             </tr>);
@@ -89,12 +89,12 @@ class TodoList extends React.Component {
                 <h1>Todo List {this.props.name}</h1>
                 <table className="table table-striped">
                     <thead className="thead-dark">
-                    <th scope="col">Id</th>
                     <th scope="col">Todo</th>
+                    <th scope="col">Status</th>
                     <th scope="col"></th>
                     </thead>
                     <tbody>
-                        {todos}
+                    {todos}
                     </tbody>
                 </table>
                 <p> My new todo </p>

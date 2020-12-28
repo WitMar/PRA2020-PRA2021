@@ -8,12 +8,12 @@
     {
       "id": 1,
       "value": "Pass Programming Laboratory",
-      "done": false
+      "done": true
     },
     {
       "id": 2,
       "value": "Have a nice holiday",
-      "done": false
+      "done": true
     }
   ]
 }

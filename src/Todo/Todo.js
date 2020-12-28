@@ -40,14 +40,12 @@ class Todo extends React.Component {
                 {done === true ?
                     <th style={greenStyle}>
                        <textarea rows="4" cols="100"
-                               value={value}
-
-                        />
+                                 value={value}
+                       />
                     </th> :
                     <th style={redStyle}>
                         <textarea rows="4" cols="100"
-                               value={value}
-
+                                  value={value}
                         />
                     </th>}
                 <th>
