@@ -2,8 +2,8 @@
   "todos": [
     {
       "id": 763,
-      "name": "test todo",
-      "finished": false
+      "value": "test todo",
+      "done": false
     }
   ]
 }
