@@ -1,5 +1,6 @@
 import React from 'react';
 import Todo from "../Todo/Todo";
+import axios from 'axios';
 
 class TodoList extends React.Component {
     constructor(props) {
@@ -12,12 +13,28 @@ class TodoList extends React.Component {
         this.counter = 2;
     };
 
+    componentDidMount() {
+        axios.get(`http://localhost:8080/todos`)
+            .then(res => {
+                const todosList = res.data;
+                this.setState({ todosList });
+            })
+    }
+
     updateChild = (id, done) => {
         let arrAfterUpdate = this.state.todosList.map(function (item) {
             if(item.id === id) item.done = done;
             return item;
         });
+
+        let object = arrAfterUpdate.find(function (item) {
+            if(item.id === id) return item;
+        });
+
         this.setState({todosList: arrAfterUpdate});
+
+        axios.put(`http://localhost:8080/todos/${object.id}`, object);
+
         console.log(arrAfterUpdate);
     };
 
@@ -28,13 +45,19 @@ class TodoList extends React.Component {
         this.setState(prevState => ({
             todosList: [...prevState.todosList, newelement]
         }));
+        axios.post(`http://localhost:8080/todos/`, newelement);
     };
 
     handleRemove = id => {
+        let object = this.state.todosList.find(function (item) {
+            if(item.id === id) return item;
+        });
         let arrAfterDel = this.state.todosList.filter(function (item) {
             return item.id !== id
         });
         this.setState({todosList: arrAfterDel});
+
+        axios.delete(`http://localhost:8080/todos/${object.id}`, object);
     }
 
     myChangeHandler = (event) => {
@@ -50,7 +73,7 @@ class TodoList extends React.Component {
                 <Todo value={todo.value}
                       done={todo.done}
                       id = {todo.id}
-                      update={() => this.updateChild}  />
+                      update={(id, done) => this.updateChild(id, done)}  />
                 <button type="button" onClick={() => this.handleRemove(todo.id)}>
                     Remove
                 </button>

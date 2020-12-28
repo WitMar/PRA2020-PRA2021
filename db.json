@@ -1,8 +1,28 @@
 {
   "todos": [
     {
-      "id": 763,
-      "value": "test todo",
+      "id": 0,
+      "value": "Learn React",
+      "done": false
+    },
+    {
+      "id": 1,
+      "value": "Pass Programming Laboratory",
+      "done": false
+    },
+    {
+      "id": 3,
+      "value": "asdas",
+      "done": false
+    },
+    {
+      "id": 4,
+      "value": "asdasasda",
+      "done": false
+    },
+    {
+      "id": 6,
+      "value": "asdasasdasadsasadasdsasdadasdsadsa avas",
       "done": false
     }
   ]
