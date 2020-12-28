@@ -3,7 +3,7 @@
     {
       "id": 0,
       "value": "Learn React",
-      "done": false
+      "done": true
     },
     {
       "id": 1,
@@ -12,17 +12,7 @@
     },
     {
       "id": 3,
-      "value": "asdas",
-      "done": false
-    },
-    {
-      "id": 4,
-      "value": "asdasasda",
-      "done": false
-    },
-    {
-      "id": 6,
-      "value": "asdasasdasadsasadasdsasdadasdsadsa avas",
+      "value": "Have a nice holiday",
       "done": false
     }
   ]
