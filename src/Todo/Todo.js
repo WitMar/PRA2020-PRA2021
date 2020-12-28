@@ -1,11 +1,11 @@
 import React from 'react';
 
 const greenStyle = {
-    color: 'green',
+    backgroundColor: 'green',
 };
 
 const redStyle = {
-    color: 'red',
+    backgroundColor: 'red',
 };
 
 
@@ -36,22 +36,29 @@ class Todo extends React.Component {
         const {done} = this.state;
 
         return (
-            <div>
+            <React.Fragment>
                 {done === true ?
-                    <li style={greenStyle}>
-                        {value}
-                    </li> :
-                    <li style={redStyle}>
-                        {value}
-                    </li>}
-                <button onClick={this.setDone}>
-                    Change status
-                </button>
-            </div>
+                    <th style={greenStyle}>
+                       <textarea rows="4" cols="100"
+                               value={value}
+
+                        />
+                    </th> :
+                    <th style={redStyle}>
+                        <textarea rows="4" cols="100"
+                               value={value}
+
+                        />
+                    </th>}
+                <th>
+                    <button onClick={this.setDone}>
+                        Change status
+                    </button>
+                </th>
+            </React.Fragment>
         )
 
     }
-    ;
 }
 
 export default Todo;

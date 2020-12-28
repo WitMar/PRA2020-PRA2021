@@ -3,7 +3,8 @@ import TodoList from "../TodoList/TodoList";
 
 class List extends React.Component {
     render() {
-        return <TodoList name="My List" />;
+        return
+        <TodoList name="My List" />;
     }
 }
 

@@ -1,6 +1,8 @@
 import React from 'react';
 import Todo from "../Todo/Todo";
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 class TodoList extends React.Component {
     constructor(props) {
@@ -69,21 +71,32 @@ class TodoList extends React.Component {
         const {todosList} = this.state;
 
         let todos = todosList.map(todo => {
-            return (<ul key={todo.id}>
+            return (<tr key={todo.id}>
                 <Todo value={todo.value}
                       done={todo.done}
                       id = {todo.id}
                       update={(id, done) => this.updateChild(id, done)}  />
-                <button type="button" onClick={() => this.handleRemove(todo.id)}>
+                <th>
+                    <button type="button" onClick={() => this.handleRemove(todo.id)}>
                     Remove
-                </button>
-            </ul>);
+                    </button>
+                </th>
+            </tr>);
         })
 
         return (
             <div className="TodoList">
                 <h1>Todo List {this.props.name}</h1>
-                {todos}
+                <table className="table table-striped">
+                    <thead className="thead-dark">
+                    <th scope="col">Id</th>
+                    <th scope="col">Todo</th>
+                    <th scope="col"></th>
+                    </thead>
+                    <tbody>
+                        {todos}
+                    </tbody>
+                </table>
                 <p> My new todo </p>
                 <input
                     type='text'
